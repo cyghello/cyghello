@@ -1,0 +1,140 @@
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8"> -->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>wak~!</title>-->
+<!--    <link rel="stylesheet" href="login.css" title="" type="" />-->
+    <!--<style type="index.css" media="all">-->
+        
+    <!--</style>-->
+<!--</head>-->
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,user-scalable=no">
+        <title>wak~~</title>
+        <link rel="stylesheet" href="web.css" title="" type="" />
+    </head>
+    <body>
+        <input class="clock_box" type="" name="" id="text" value="" />
+        <input class="clock_box" type="submit" name="" id="" value="发送消息" onclick = "start()"/>
+        <!--<div id="msg"></div>-->
+        <div class="clock_box">
+            <div class="clock">
+                <p id="time"> </p>
+            </div>
+            
+            <div class="clock_box">
+                <button type="submit" class="clock">
+                    <p>GO!</p></button>
+            </div>
+        </div>
+        <div>
+
+        </div>
+<!--</body>-->
+<!--</html>-->
+    <script>
+            // 获取页面id=time的元素（P元素<p id="time">12:12:12 AM</p>）
+            var time = document.querySelector("#time");
+    
+            // 定义函数传入time元素
+            function up(time_el) {
+                // 获取当前时间
+                let date = new Date();
+                // 获取时分秒
+                let h = date.getHours();
+                let m = date.getMinutes();
+                let s = date.getSeconds();
+                // 上午与下午
+                let day_night = "AM";
+    
+                // 计算上午与下午
+                if (h > 12) {
+                    // h = h - 12;
+                    day_night = "PM";
+                }
+    
+                // 如果时间小于10则前面补充0
+                if (h < 10) { h = "0" + h; }
+                if (m < 10) { m = "0" + m; }
+                if (s < 10) { s = "0" + s; }
+    
+                // 拼接时间并且赋值给time元素的文本中，从而显示
+                time_el.textContent = h + ":" + m + ":" + s + " " + day_night;
+    
+            }
+    
+            // 定时器，每秒执行一次实现更新
+            setInterval(() => {
+                up(time);
+            }, 1000);
+    
+    /**
+    0: 未连接
+    1： 连接成功，可通讯
+    2：正在关闭
+    3：连接已关闭或无法打开
+    */
+    //创建一个webSocket 实例
+    var websocket = new WebSocket("ws://121.43.237.156:6001");
+    
+    websocket.onerror = function(event){oncl
+        onError(event);
+    };
+    
+    //打开websocket
+    websocket.onopen = function(event){
+        onOpen(event);
+    }
+    //监听消息
+    websocket.onmessage = function(event){ 
+        onMessage(event);
+    }
+    websocket.onclose = function(event){ //服务器关闭 触发
+        onClose(event);
+    }
+    //关闭监听websocket
+    function onError(event){
+        document.getElementById("msg").innerHTML = "<p>关闭</p>";
+        console.log("error"+event.data);
+    }
+    function onOpen(event){
+        console.log("open:"+sockState());
+        document.getElementById("msg").innerHTML = "<p>已连接到websocket服务器</p>";
+    }
+    function onMessage(event){
+        console.log("onMessage");
+        document.getElementById("msg").innerHTML += "<p>收到消息"+event.data+"</p>";
+    }
+    function onClose(event){
+        document.getElementById("msg").innerHTML = "<p>websocke连接已关闭</p>";
+        console.log("close:"+sockState());
+        websocket.close();
+    }
+    function sockState(){
+        var status = ['未连接','连接成功，可通讯','正在关闭','连接已关闭或无法打开'];
+        return status[websocket.readyState];
+    }
+    function start(event){
+        if (websocket.readyState != 1){
+            alert('未连接，无法通讯');
+            return;
+        }
+        console.log(websocket);
+        var msg = document.getElementById('text').value;
+        if (msg == ''){
+            alert('请输入消息内容！');
+            return;
+        }
+        document.getElementById('text').value = '';
+        console.log("send:"+sockState());
+        console.log("msg="+msg);
+        websocket.send(msg);
+        document.getElementById("msg").innerHTML += "<p>发出内容:"+msg+"</p>";
+    }
+</script>
+</body>
+</html>

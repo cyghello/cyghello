@@ -1,0 +1,68 @@
+/*.loginCard{*/
+/*    width: fit-content;*/
+/*    padding: 2px 2px 12px 12px; */
+/*    margin: 200px auto;*/
+/*    border: 1px solid #fff;*/
+/*    border-radius: 7px;*/
+/*    box-shadow:  2px 2px 10px 1px rgb(206,206,206);*/
+/*}*/
+
+/*.loginCard.logo{*/
+/*    margin: 0 auto;*/
+/*    width: 45px;*/
+/*    height: 45px;*/
+/*    transform:  translateY(100px);*/
+/*    border: 1px solid #f0c;*/
+/*    border-radius: 50%;*/
+/*    background-color: #fff;*/
+/*    box-shadow:  2px 2px 10px 1px rgb(113,113,113);*/
+/*}*/
+/*.loginCard.logo.img{*/
+/*    width: 100%;*/
+/*}*/
+
+:root {
+    --color2: #56d5fc;
+    --color4: #def700;
+    --color6: #fa3195;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 14px;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+}
+.clock_box {
+    position: relative;
+    width: 380px;
+    height: 80px;
+    border-radius: 10px;
+    background-image: linear-gradient(135deg, var(--color2), var(--color4), var(--color6));
+    /* 居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: animate 4s linear infinite;
+}
+.clock_box::after, .clock_box::before {
+    /*position: absolute;*/
+    content: "";
+    /* 集成父级样式 */
+    background-image: inherit;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: 10px;
+    filter: blur(15px);
+}

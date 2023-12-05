@@ -1,0 +1,254 @@
+/* 导入字体 */
+@import url("https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap");
+
+:root {
+    --background-color: #000;
+    --border-color    : #7591AD;
+    --text-color      : #34495e;
+    --color1          : #EC3E27;
+    --color2          : #f01d67;
+    --color3          : #1474bd;
+    --color4          : #04ffcd;
+    --color5          : #fdcb6e;
+    --color6          : #e056fd;
+    --color7          : #F97F51;
+    --color8          : #BDC581;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 14px;
+}
+
+body {
+   /* width: 100vw; */
+   height: 100vh;
+   background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+   /* background-color: #000; */
+   /* display: flex; */
+   /* justify-content: center; */
+   /* align-items: center; */
+   /* font-family: serif; */
+}
+/* .top_box{ */
+   	/* background: #000; /*????????*/
+	/* width: 1000px; /*??????*/
+	/* height: 300px; /*??????*/
+	/* margin: 0 auto; /*???????*/
+	/* padding-top: 100px; /*????????*/
+    /* position: absolute; */
+    /* width: 0px; */
+    /* height: 0px; */
+/* } */
+.top_box p{
+   	/* width: 1000px; */
+   	font-family: cursive;
+   	font-size: 50px;
+   	/* text-align: center; */
+   	background-image: linear-gradient(135deg, var(--color2), var(--color4), var(--color6));
+   	/* background: -webkit-linear-gradient(left, #0f0, #00f) 0 0 no-repeat;/*??????*/
+   	-webkit-background-size: 160px;                        /*??????*/
+   	-webkit-background-clip: text;                            /*????????*/
+   	-webkit-text-fill-color: rgb(179 46 46 / 30%);        /*?????????*/
+   	-webkit-animation: shine 5.5s infinite;
+   	margin: 0px;
+   	padding: 2px;
+   	/* position: absolute; */
+   	/* width: 0px; */
+   	/* height: 0px; */
+}
+@-webkit-keyframes shine{   /*????*/
+   0%{
+      	background-position: 0 0;
+   }
+	100%{
+		background-position: 100% 100%;
+	}
+}
+a {
+    /* width: 30px; */
+    position: relative;
+    padding: 12px 40px;
+    border-radius: 30px;
+    font-size: 30px;
+    color: #FFF;
+    text-decoration: none;
+    /* 使用linear-gradient生成一个线性渐变的“背景图” */
+    background-image: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+    /* 放大背景图 */
+    background-size: 400%;
+    /* 这里是为了让a标签的背景显示在a::before的下面 */
+    z-index: 1;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* align-content: center; */
+    /* flex-wrap: nowrap; */
+}
+
+a:hover {
+    /* 创建动画
+        动画名称show
+        执行时间8秒
+        线性
+        循环执行
+    */
+    animation: show 8s linear infinite;
+}
+
+/* 动画主体
+    从初始到结束，移动背景图的位置
+*/
+
+@keyframes show {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 400%;
+    }
+}
+
+/* 创建背景炫光效果 */
+a::before{
+    position: absolute;
+    content: "";
+    top:-5px;
+    left:-5px;
+    right:-5px;
+    bottom:-5px;
+    /* 使用linear-gradient生成一个线性渐变的“背景图” */
+    background-image: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+    /* 放大背景图 */
+    background-size: 400%;
+    border-radius: 40px;
+    z-index: -1;
+    filter: blur(20px);
+    /* 默认不显示 */
+    opacity: 0;
+}
+a:hover::before{
+    opacity: 1;
+    /* 背景炫光增加动画 */
+    /* 与按钮的动画保持一致 */
+    /* 创建动画
+        动画名称show
+        执行时间8秒
+        线性
+        循环执行
+    */
+    animation: show 8s linear infinite;
+}
+.content{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0px;
+	padding: 0px;
+}
+
+/* .channel {
+    position   : absolute;
+    width      : 80%;
+    text-align : center;
+    top        : 50%;
+    left       : 50%;
+    transform  : translate(-50%, -200px);
+    font-size  : 30px;
+    font-weight: bold;
+    color      : #fff;
+} */
+
+.box {
+    /* width: 1000px; */
+    height: 120px;
+    /* background-color: #fff; */
+    display        : flex;
+    justify-content: space-around;
+    align-items    : center;
+    transform-style: preserve-3d;
+}
+
+.box p {
+    position        : relative;
+    font-size: 50px;
+    font-family     : 'Bowlby One SC', Arial, Helvetica, sans-serif;
+    color           : #FFF;
+    transform       : scale(0.9, 1) rotateY(-45deg);
+    transform-origin: bottom center;
+    animation       : animate 2.5s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 100ms);
+}
+
+@keyframes animate {
+    20% {
+        transform: scale(0.9, 1) rotateY(-45deg);
+        text-shadow:
+            0 0 var(--color2),
+            0 0 var(--color3),
+            0 0 var(--color4);
+    }
+
+    40% {
+        transform: scale(0.9, 2) translateY(16px);
+        text-shadow:
+            -10px -2px var(--color2),
+            -20px -3px var(--color3),
+            -30px -4px var(--color4);
+    }
+
+    60% {
+        transform: scale(0.9, 1) rotateY(45deg);
+        text-shadow:
+            0 0 var(--color2),
+            0 0 var(--color3),
+            0 0 var(--color4);
+    }
+
+    80% {
+        transform: scale(0.9, 2) translateY(16px);
+        text-shadow:
+            10px -2px var(--color2),
+            20px -3px var(--color3),
+            30px -4px var(--color4);
+    }
+}
+/* 鼠标悬浮文字收展 */
+.text {
+    font-size  : 30px;
+    font-weight: 800;
+
+    color: #fff;
+
+    cursor: pointer;
+
+    /* 关键点，让所有的span居中显示 */
+    display        : flex;
+    justify-content: center;
+}
+
+.text span {
+    color: #EC3E27;
+    transition: all 0.5s;
+}
+
+.text span.h {
+    color    : #fdcb6e;
+    /* 另一个关键点 让宽度为0 */
+    max-width: 0;
+    opacity  : 0;
+}
+
+.text:hover span {
+    /* 展示时，让红色字体前面有间隔 */
+    margin-left: 20px;
+}
+
+.text:hover span.h {
+    max-width: 1em;
+    opacity: 1;
+    margin-left: 5px;
+}

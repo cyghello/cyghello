@@ -1,0 +1,252 @@
+nohup: ignoring input
+client_key[lPsWGgGKuvcOyoEMQ9IB2A==]
+server_key[9v3errq9Uz7hi6cDZvsrcO5SbuA=]
+
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Sec-WebSocket-Version: 13
+Connection: Upgrade
+Sec-WebSocket-Accept: 9v3errq9Uz7hi6cDZvsrcO5SbuA=
+
+new client[119.98.221.42:2876]
+hello msg [GET / HTTP/1.1
+Host: 121.43.237.156:6001
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+Upgrade: websocket
+Origin: http://121.43.237.156
+Sec-WebSocket-Version: 13
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Sec-WebSocket-Key: lPsWGgGKuvcOyoEMQ9IB2A==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+]
+client [119.98.221.42:2876] say:�
+client [Resource id #5] is closed!
+client_key[Y0kmgjOZUll8DN9X1wVShw==]
+server_key[Ju2nsgnWZvAq9ZE1C0aHuvIeSos=]
+
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Sec-WebSocket-Version: 13
+Connection: Upgrade
+Sec-WebSocket-Accept: Ju2nsgnWZvAq9ZE1C0aHuvIeSos=
+
+new client[119.98.221.42:2877]
+hello msg [GET / HTTP/1.1
+Host: 121.43.237.156:6001
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+Upgrade: websocket
+Origin: http://121.43.237.156
+Sec-WebSocket-Version: 13
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Sec-WebSocket-Key: Y0kmgjOZUll8DN9X1wVShw==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+]
+client [119.98.221.42:2877] say:�
+client [Resource id #6] is closed!
+client_key[reKF4bIovcW/ZqXiFnNWgg==]
+server_key[bEa/7JqBdyybHHVWZLgF4ZuGuCE=]
+
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Sec-WebSocket-Version: 13
+Connection: Upgrade
+Sec-WebSocket-Accept: bEa/7JqBdyybHHVWZLgF4ZuGuCE=
+
+new client[119.98.221.42:2878]
+hello msg [GET / HTTP/1.1
+Host: 121.43.237.156:6001
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+Upgrade: websocket
+Origin: http://121.43.237.156
+Sec-WebSocket-Version: 13
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Sec-WebSocket-Key: reKF4bIovcW/ZqXiFnNWgg==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+]
+client [119.98.221.42:2878] say:�
+client [Resource id #7] is closed!
+client_key[qaJbvSt1SgS8y8eKSREYnA==]
+server_key[VvaJN8KgIJzn36EYoRFMPyViFBA=]
+
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Sec-WebSocket-Version: 13
+Connection: Upgrade
+Sec-WebSocket-Accept: VvaJN8KgIJzn36EYoRFMPyViFBA=
+
+new client[119.98.221.42:2879]
+hello msg [GET / HTTP/1.1
+Host: 121.43.237.156:6001
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+Upgrade: websocket
+Origin: http://121.43.237.156
+Sec-WebSocket-Version: 13
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Sec-WebSocket-Key: qaJbvSt1SgS8y8eKSREYnA==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+]
+client [119.98.221.42:2879] say:�
+client [Resource id #8] is closed!
+client_key[owPqH/SHyiVCtEPFh/e1cQ==]
+server_key[6QpbdR6gw/CUM23sTBOisKek+6k=]
+
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Sec-WebSocket-Version: 13
+Connection: Upgrade
+Sec-WebSocket-Accept: 6QpbdR6gw/CUM23sTBOisKek+6k=
+
+new client[119.98.221.42:2880]
+hello msg [GET / HTTP/1.1
+Host: 121.43.237.156:6001
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+Upgrade: websocket
+Origin: http://121.43.237.156
+Sec-WebSocket-Version: 13
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Sec-WebSocket-Key: owPqH/SHyiVCtEPFh/e1cQ==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+]
+client_key[MPqmVfJjuysDX3S71jXmPw==]
+server_key[sM96G5upMkSrQvWfDSdnMMMbkwk=]
+
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Sec-WebSocket-Version: 13
+Connection: Upgrade
+Sec-WebSocket-Accept: sM96G5upMkSrQvWfDSdnMMMbkwk=
+
+new client[183.95.249.73:15865]
+hello msg [GET / HTTP/1.1
+Host: 121.43.237.156:6001
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+User-Agent: Mozilla/5.0 (Linux; U; Android 14; zh-cn; 2304FPN6DC Build/UKQ1.230804.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/109.0.5414.118 Mobile Safari/537.36 XiaoMi/MiuiBrowser/17.8.211101 swan-mibrowser
+Upgrade: websocket
+Origin: http://121.43.237.156
+Sec-WebSocket-Version: 13
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7
+Sec-WebSocket-Key: MPqmVfJjuysDX3S71jXmPw==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+]
+client [183.95.249.73:15865] say:hello
+client [119.98.221.42:2880] say:ooo
+PHP Warning:  socket_select(): unable to select [4]: Interrupted system call in /www/wwwroot/121.43.237.156/server1.php on line 19
+
+Warning: socket_select(): unable to select [4]: Interrupted system call in /www/wwwroot/121.43.237.156/server1.php on line 19
+client [119.98.221.42:2880] say:�
+client [Resource id #9] is closed!
+client_key[nE0JvONaDCvM+1203TTMHw==]
+server_key[MOhqUEci9O7mQPgFcPqMHadI2lE=]
+
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Sec-WebSocket-Version: 13
+Connection: Upgrade
+Sec-WebSocket-Accept: MOhqUEci9O7mQPgFcPqMHadI2lE=
+
+new client[119.98.221.42:2881]
+hello msg [GET / HTTP/1.1
+Host: 121.43.237.156:6001
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+Upgrade: websocket
+Origin: http://121.43.237.156
+Sec-WebSocket-Version: 13
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Sec-WebSocket-Key: nE0JvONaDCvM+1203TTMHw==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+]
+client [183.95.249.73:15865] say:�Invalid UTF-8 in text frame
+client [Resource id #10] is closed!
+client [119.98.221.42:2881] say:�Invalid UTF-8 in text frame
+client [Resource id #11] is closed!
+client_key[BjEvwBIcV40ahiggI6GUEw==]
+server_key[c0KHCmIkxfTt4hkBGlGLVPISRWQ=]
+
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Sec-WebSocket-Version: 13
+Connection: Upgrade
+Sec-WebSocket-Accept: c0KHCmIkxfTt4hkBGlGLVPISRWQ=
+
+new client[119.98.221.42:2882]
+hello msg [GET / HTTP/1.1
+Host: 121.43.237.156:6001
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+Upgrade: websocket
+Origin: http://121.43.237.156
+Sec-WebSocket-Version: 13
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Sec-WebSocket-Key: BjEvwBIcV40ahiggI6GUEw==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+]
+client_key[4amZ6N9sluFCZzSugHC8Jw==]
+server_key[9p+uCxQH+bybh7KySkhCrNt7gh8=]
+
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Sec-WebSocket-Version: 13
+Connection: Upgrade
+Sec-WebSocket-Accept: 9p+uCxQH+bybh7KySkhCrNt7gh8=
+
+new client[183.95.249.73:15867]
+hello msg [GET / HTTP/1.1
+Host: 121.43.237.156:6001
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+User-Agent: Mozilla/5.0 (Linux; U; Android 14; zh-cn; 2304FPN6DC Build/UKQ1.230804.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/109.0.5414.118 Mobile Safari/537.36 XiaoMi/MiuiBrowser/17.8.211101 swan-mibrowser
+Upgrade: websocket
+Origin: http://121.43.237.156
+Sec-WebSocket-Version: 13
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7
+Sec-WebSocket-Key: 4amZ6N9sluFCZzSugHC8Jw==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+]
+client [183.95.249.73:15867] say:OK
+client [119.98.221.42:2882] say:aaa
+client [183.95.249.73:15867] say:从那个牛叉
+client [183.95.249.73:15867] say:冠军JBV磨口机不锈钢
+client [183.95.249.73:15867] say:电话费结婚才半年
+client [183.95.249.73:15867] say:横行霸道看成绩打壳锤架对吧开大抗打击到哪
+client [Resource id #13] is closed!

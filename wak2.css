@@ -1,0 +1,158 @@
+:root {
+    --background-color: #000;
+    --border-color    : #7591AD;
+    --text-color      : #34495e;
+    --color1          : #EC3E27;
+    --color2          : #f01d67;
+    --color3          : #1474bd;
+    --color4          : #04ffcd;
+    --color5          : #fdcb6e;
+    --color6          : #e056fd;
+    --color7          : #F97F51;
+    --color8          : #BDC581;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+body {
+   /* width: 100vw; */
+   height: 100vh;
+   background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+   /* background-color: #000; */
+   /* display: flex; */
+   /* justify-content: center; */
+   /* align-items: center; */
+   /* font-family: serif; */
+}
+
+/* .top_box{ */
+   	/* background: #000; /*????????*/
+	/* width: 1000px; /*??????*/
+	/* height: 300px; /*??????*/
+	/* margin: 0 auto; /*???????*/
+	/* padding-top: 100px; /*????????*/
+    /* position: absolute; */
+    /* width: 0px; */
+    /* height: 0px; */
+/* } */
+
+.top_box p{
+   	/* width: 1000px; */
+   	font-family: cursive;
+   	font-size: 50px;
+   	/* text-align: center; */
+   	background-image: linear-gradient(135deg, var(--color2), var(--color4), var(--color6));
+   	/* background: -webkit-linear-gradient(left, #0f0, #00f) 0 0 no-repeat;/*??????*/
+   	-webkit-background-size: 160px;                        /*??????*/
+   	-webkit-background-clip: text;                            /*????????*/
+   	-webkit-text-fill-color: rgb(179 46 46 / 30%);        /*?????????*/
+   	-webkit-animation: shine 5.5s infinite;
+   	margin: 0px;
+   	padding: 2px;
+   	/* position: absolute; */
+   	/* width: 0px; */
+   	/* height: 0px; */
+}
+@-webkit-keyframes shine{   /*????*/
+   0%{
+      	background-position: 0 0;
+   }
+	100%{
+		background-position: 100% 100%;
+	}
+}
+.button_box{
+    margin: 30px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button_box button{
+    /* width: 30px; */
+    position: relative;
+    padding: 12px 40px;
+    border-radius: 30px;
+    font-size: 30px;
+    color: #FFF;
+    text-decoration: none;
+    /* 使用linear-gradient生成一个线性渐变的“背景图” */
+    background: linear-gradient(to left, #BDBBBE 0%, #9D9EA3 100%), radial-gradient(88% 271%, rgba(255, 255, 255, 0.25) 0%, rgba(254, 254, 254, 0.25) 1%, rgba(0, 0, 0, 0.25) 100%), radial-gradient(50% 100%, rgba(255, 255, 255, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%); 
+    /* background-image: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4); */
+    /* 放大背景图 */
+    background-size: 400%;
+    /* 这里是为了让a标签的背景显示在a::before的下面 */
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* align-content: center; */
+    /* flex-wrap: nowrap; */
+}
+.button_box button:hover {
+    /* 创建动画
+        动画名称show
+        执行时间8秒
+        线性
+        循环执行
+    */
+    animation: show 8s linear infinite;
+}
+
+/* 动画主体
+    从初始到结束，移动背景图的位置
+*/
+
+/* @keyframes show {
+    0% {
+        background-position: 0%;
+    }
+    100% {
+        background-position: 400%;
+    }
+} */
+
+/* 创建背景炫光效果 */
+.button_box button::before{
+    position: absolute;
+    content: "";
+    top:-5px;
+    left:-5px;
+    right:-5px;
+    bottom:-5px;
+    /* 使用linear-gradient生成一个线性渐变的“背景图” */
+    background-image: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+    /* 放大背景图 */
+    background-size: 400%;
+    border-radius: 40px;
+    z-index: -1;
+    filter: blur(20px);
+    /* 默认不显示 */
+    opacity: 0;
+}
+.button_box button:hover::before{
+    opacity: 1;
+    /* 背景炫光增加动画 */
+    /* 与按钮的动画保持一致 */
+    /* 创建动画
+        动画名称show
+        执行时间8秒
+        线性
+        循环执行
+    */
+    animation: show 8s linear infinite;
+}
+
+.button_box button:focus{
+
+    /* :active 元素被点击时变色，但颜色在点击后消失 */
+    /* :focus 元素被点击后变色，且颜色在点击后不消失 */
+    background-image: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+    /* background: linear-gradient(to left, #BDBBBE 0%, #9D9EA3 100%), radial-gradient(88% 271%, rgba(255, 255, 255, 0.25) 0%, rgba(254, 254, 254, 0.25) 1%, rgba(0, 0, 0, 0.25) 100%), radial-gradient(50% 100%, rgba(255, 255, 255, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%);  */
+}

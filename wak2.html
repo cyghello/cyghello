@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wak~!</title>
+    <link rel="stylesheet" href="wak2.css" title="" type="" />
+</head>
+<body>
+            <div class="top_box">
+                <div class="top_box">
+                    <p>IOT 物联网智能开关</p>
+                </div>
+            </div>
+
+                <div class="button_box">
+                    <button id="turnon" onclick="turnOn()"> 开启</button>
+                </div>
+                <div class="button_box">
+                    <button id="turnoff" onclick="turnOff()"> 关闭</button>
+                </div>
+
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+    var websocket = new WebSocket("ws://121.43.237.156:6001");
+
+    websocket.onmessage = function(event){ 
+        onMessage(event);
+    }
+    function onMessage(event){
+        // if (userName.trim().length == 0 || passWord.trim().length == 0){
+        //     alert('用户名或密码不能为空')；
+        //     return;
+        // }
+        // $.ajax({
+        //   type:'post',
+        //   url:'./server1.php',
+        //   dataType:'json',
+        //   data:{
+        //     //   uname:userName,
+        //     //   upass:passWord
+        //   },
+        //   success:function(res){
+        //       console.log(res);
+        //   }
+        // });
+         
+        //  let xhr = new XMLHttpRequest();
+        //  console.log(xhr.readyState);
+        //  xhr.open("GET","./server1.php",true);
+        //  xmlhttp.send("on");
+        // xhr.open("GET","./wak2.html");
+        // let str = JSON.parse(xhr.response);
+        // console.log('event.data');
+
+        // console.log(str);
+        // document.getElementById("turnOn").innerHTML += "<p>收到消息"+event.data+"</p>";
+        console.log(event.data);
+    }
+        function turnOn() {
+        // $.ajax({
+        //   type:'post',
+        //   url:'./server1.php',
+        //   dataType:'json',
+        //   data:{
+        //        "uname":1,
+        //     //   upass:passWord
+        //   },
+        //   success:function(res){
+        //       console.log(res);
+        //   }
+        // });
+            websocket.send("on");
+            // console.log("on");
+            // document.getElementById("msg").innerHTML += "<p>发出内容:"+"turn on"+"</p>"; //获取前端输入的消息
+            // document.getElementById("turnon").innerHTML ="<p>ren:"+"turn on"+"</p>";
+        }
+        function turnOff() {
+            websocket.send("off");
+            //console.log("off");
+            // document.getElementById("msg").innerHTML += "<p>ren:"+"turn off"+"</p>";
+            // document.getElementById("turnoff").innerHTML ="<p>ren:"+"turn off"+"</p>";
+        }
+
+</script>
+</body>
+</html>
