@@ -1,4 +1,17 @@
 <?php
+/*综合整个代码来看 :
+    1、创建的套接字$socket1在有其他设备连接时,所代表的就是当前想要连接的设备
+    2、array($socket1)使用foreach(A as B)遍历时,是将A赋给B,例如遍历中B=$socket1,就代表这个是当前连接的设备
+    3、如果是聊天室的情况,在我发送的消息"时"(时:是一个非常重要的当前状态)不想被我自己看见,但是要让别人看见,可以遍历所有的套接字,
+        判断是否有其他的套接字(例如:$client_socket也是所有$socket1中的一个)与本身套接字socket1不相等,进而将我发送的消息转发给其他人。
+    4、本程序中$socket1、$clients($client_socket)、$read($socket_item)中的关系,从变量的角度看
+        $socket1是一个变量
+        $clients是所有$socket1的集合
+        $client_socket是遍历$clients(所有$socket1)的一个临时变量,被称为客户连接字
+        $read 等于 $clients, 但表达上更像是copy出的临时变量,一定程度上是为了辨识是不是有没有消息返回给当前套接字$socket_item
+        $socket_item 就是 $read的一个临时变量,被称为当前连接字
+    5、程序整个逻辑思路就是 阻塞等待有连接(里面阻塞的方式有很多函数,可以说大部分通信都是阻塞的方式来等待消息),判断并返回消息。思路想说的简单点。
+*/
     $socket1 = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
     
     //172.19.31.212 
@@ -49,12 +62,13 @@
                         $web_msg = decode($msg1);
                         echo "$msg1";
                         echo "$web_msg";
-                        if ($web_msg == "on")
+                        // if ($web_msg == "on")
+                        if ($msg1 == "on")
                         {
                         //$id = search($socket_item,$clients);
                         //echo "client [".$id."] say:".$web_msg."\n"; ///recv + decode 
-                            
-                            $broadcast = encode("打开成功");
+                            $broadcast = "打开成功";
+                            //$broadcast = encode("打开成功");
                             //发给自己 : $socket_item;
                             if (false === @socket_write($socket_item, $broadcast,strlen($broadcast)))
                             {
@@ -69,7 +83,8 @@
                             }
                         }
                         else{
-                            $broadcast = encode("指令错误");
+                            $broadcast = "指令错误";
+                            //$broadcast = encode("指令错误");
                             if (false === @socket_write($socket_item, $broadcast,strlen($broadcast)))
                             {
                                 socket_close($socket_item);
@@ -79,7 +94,6 @@
                                 unset($clients[$key2]);
                                 echo "Myclient $key is closed\n";
                                 continue;
-                                
                             }
                         }
                         //原视频代码循环foreach
