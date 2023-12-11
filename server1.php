@@ -11,6 +11,8 @@
         $read 等于 $clients, 但表达上更像是copy出的临时变量,一定程度上是为了辨识是不是有没有消息返回给当前套接字$socket_item
         $socket_item 就是 $read的一个临时变量,被称为当前连接字
     5、程序整个逻辑思路就是 阻塞等待有连接(里面阻塞的方式有很多函数,可以说大部分通信都是阻塞的方式来等待消息),判断并返回消息。思路想说的简单点。
+
+    version-1.02 修改了对不同设备访问服务器发送数据的格式进行了判断，分为编码和未编码，进而发送不同的数据
 */
     $socket1 = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
     
@@ -60,27 +62,46 @@
                     else{
                         
                         $web_msg = decode($msg1);
-                        echo "$msg1";
+                        // echo "$msg1";
                         echo "$web_msg";
                         // if ($web_msg == "on")
-                        if ($msg1 == "on")
+                        if ($msg1== "on" || $web_msg == "on")
                         {
+                            if ($msg1== "on")
+                            {
+                                $broadcast = "打开成功";
+                                if (false === @socket_write($socket_item, $broadcast,strlen($broadcast)))
+                                {
+                                    socket_close($socket_item);
+                                    $key1 = array_search($socket_item,$read);
+                                    unset($read[$key1]);
+                                    $key2 = array_search($socket_item,$clients);
+                                    unset($clients[$key2]);
+                                    echo "Myclient $key is closed\n";
+                                    continue;
+                                    
+                                }
+                            }
                         //$id = search($socket_item,$clients);
                         //echo "client [".$id."] say:".$web_msg."\n"; ///recv + decode 
-                            //$broadcast = "打开成功";
-                            $broadcast = encode("打开成功");
-                            //发给自己 : $socket_item;
-                            if (false === @socket_write($socket_item, $broadcast,strlen($broadcast)))
+                            //
+                            if ($web_msg == "on")
                             {
-                                socket_close($socket_item);
-                                $key1 = array_search($socket_item,$read);
-                                unset($read[$key1]);
-                                $key2 = array_search($socket_item,$clients);
-                                unset($clients[$key2]);
-                                echo "Myclient $key is closed\n";
-                                continue;
-                                
+                                $broadcast = encode("打开成功");
+                                //发给自己 : $socket_item;
+                                if (false === @socket_write($socket_item, $broadcast,strlen($broadcast)))
+                                {
+                                    socket_close($socket_item);
+                                    $key1 = array_search($socket_item,$read);
+                                    unset($read[$key1]);
+                                    $key2 = array_search($socket_item,$clients);
+                                    unset($clients[$key2]);
+                                    echo "Myclient $key is closed\n";
+                                    continue;
+                                    
+                                }
                             }
+
                         }
                         else{
                             //$broadcast = "指令错误";
@@ -122,7 +143,7 @@
             continue;
         }
     }
-        function handshake($buffer,$client_socket){
+    function handshake($buffer,$client_socket){
         // Sec-WebSocket-Key
         $temp_str = substr($buffer,strpos($buffer, 'Sec-WebSocket-Key:')+18);
         $client_key = trim(substr($temp_str,0,strpos($temp_str,"\r\n")));
