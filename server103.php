@@ -1,6 +1,8 @@
 <?php
 /*
     version-1.03 设计聊天室场景，发送消息给指定的人，难点是要给每一个连接的人做一个ID号进行识别。
+    键值key3：ID存储的键值
+    二维数组：将套接字和ID组成一个数组
 */
     $socket1 = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
     
@@ -13,9 +15,11 @@
     //$socket1
     socket_listen($socket1,3); //套接字$socket1监听队列数为3
     
+    //创建121.43.237.156网页的主ID号
     $clients = array($socket1);
-    $idlist = 0;
-    $ID = array();
+    // $id = 0;
+    // $idslave = 0;
+    $idlist = array();
     while (TRUE){
         //socket_select
         $read = $clients;
@@ -31,11 +35,19 @@
                             socket_close($socket_client);
                             continue;
                         }
-                    handshake($hello,$socket_client);
+                    $id = handshake($hello,$socket_client);
+                    array_push($idlist,$id); //向数组中插入ID
                     socket_getpeername($socket_client,$ip,$port);//获取请求ip port
-                    $clients[$ip.":".$port] = $socket_client;
+                    $clients[$ip.":".$port.":".$id] = $socket_client;
+                    echo "new client[$clients]\n";
+                    echo "new client[$socket_client]\n";
+                    // handshake($hello,$socket_client);
+                    // socket_getpeername($socket_client,$ip,$port);//获取请求ip port
+                    // $clients[$ip.":".$port] = $socket_client;
+                    //$idlist[$id] = $hello;
                     echo "new client[".$ip.":".$port."]\n";
                     echo "hello msg [".$hello."]\n";
+                    echo "hello msg [".$id."]\n";
                 }
                 else
                 {
@@ -47,90 +59,68 @@
                         unset($read[$key1]);
                         $key2 = array_search($socket_item, $clients);
                         unset($clients[$key2]);
+                        // $key3 = array_search($id, $idlist);
+                        // unset($idlist[$key3]);
                         echo "client [$socket_item] is closed!\n";
                     }
                     else{
-                        
-                        $web_msg = decode($msg1);
-                        // echo "$msg1";
-                        echo "$web_msg";
-                        // if ($web_msg == "on")
-                        if ($msg1== "on" || $web_msg == "on")
-                        {
-                            if ($msg1== "on")
-                            {
-                                $broadcast = "打开成功";
-                                if (false === @socket_write($socket_item, $broadcast,strlen($broadcast)))
-                                {
-                                    socket_close($socket_item);
-                                    $key1 = array_search($socket_item,$read);
-                                    unset($read[$key1]);
-                                    $key2 = array_search($socket_item,$clients);
-                                    unset($clients[$key2]);
-                                    echo "Myclient $key is closed\n";
-                                    continue;
-                                    
-                                }
-                            }
-                        //$id = search($socket_item,$clients);
-                        //echo "client [".$id."] say:".$web_msg."\n"; ///recv + decode 
-                            if ($web_msg == "on")
-                            {
-                                $broadcast = encode("打开成功");
-                                //发给自己 : $socket_item;
-                                if (false === @socket_write($socket_item, $broadcast,strlen($broadcast)))
-                                {
-                                    socket_close($socket_item);
-                                    $key1 = array_search($socket_item,$read);
-                                    unset($read[$key1]);
-                                    $key2 = array_search($socket_item,$clients);
-                                    unset($clients[$key2]);
-                                    echo "Myclient $key is closed\n";
-                                    continue;
-                                    
-                                }
-                            }
-
-                        }
-                        else{
-                            //$broadcast = "指令错误";
-                            $broadcast = encode("指令错误");
-                            if (false === @socket_write($socket_item, $broadcast,strlen($broadcast)))
-                            {
-                                socket_close($socket_item);
-                                $key1 = array_search($socket_item,$read);
-                                unset($read[$key1]);
-                                $key2 = array_search($socket_item,$clients);
-                                unset($clients[$key2]);
-                                echo "Myclient $key is closed\n";
-                                continue;
-                            }
-                        }
-                        //原视频代码循环foreach
-                        // foreach ($clients as $client_socket){
-                        // //
-                        // if ($client_socket != $socket1)
-                        // {
-                        //     //sleep(1);
-                        //     //socket_write($client_socket,$broadcast,strlen($broadcast));
-                        //     if (false === @socket_write($client_socket,$broadcast,strlen($broadcast)))  //@表示写程序失败，继续执行下面的语句
-                        //     {
-                        //         socket_close($client_socket);
-                        //         $key1 = array_search($client_socket, $read);
-                        //         unset($read[$key1]);  //删除键值对应的socket
-                        //         $key2 = array_search($client_socket,$read);
-                        //         unset($clients[$key2]);
-                        //         echo "otherclient [$socket_item] is closed!\n";
+                        //想要发送指定的ID
+                        $idslave = recv_id ($result);
+                        //                         /**
+                        //  * 给指定的人发送消息
+                        //  * @param message
+                        //  */
+                        // private void sendToUser(String message) {
+                        //     String sendUserno = message.split("[|]")[1];
+                        //     String sendMessage = message.split("[|]")[0];
+                        //     String now = getNowTime();
+                        //     try {
+                        //         if (webSocketSet.get(sendUserno) != null) {
+                        //             webSocketSet.get(sendUserno).sendMessage(now + "用户" + userno + "发来消息：" + " <br/> " + sendMessage);
+                        //         } else {
+                        //             System.out.println("当前用户不在线");
                         //         }
+                        //     } catch (IOException e) {
+                        //         e.printStackTrace();
                         //     }
                         // }
+                        $web_msg = decode($msg1);
+                        echo "$web_msg";
+                        foreach ($clients as $client_socket){
+                        //
+                        if ($client_socket != $socket1)
+                        {
+                            $broadcast = encode("打开成功");
+                            //sleep(1);
+                            //socket_write($client_socket,$broadcast,strlen($broadcast));
+                            if (false === @socket_write($client_socket,$broadcast,strlen($broadcast)))  //@表示写程序失败，继续执行下面的语句
+                            {
+                                socket_close($client_socket);
+                                $key1 = array_search($client_socket, $read);
+                                unset($read[$key1]);  //删除键值对应的socket
+                                $key2 = array_search($client_socket,$read);
+                                unset($clients[$key2]);
+                                echo "otherclient [$socket_item] is closed!\n";
+                                }
+                            }
+                        }
+                        }
                     }
                 }
             }
-        }
+        
         else{
             continue;
         }
+    }
+    function recv_id ($buffer)
+    {
+        $pos = strrpos($buffer,"id");
+        //这里先设置为固定的id字符长度
+        $temp_str = substr($buffer,strpos($buffer, 'Sec-WebSocket-Key:')+18);
+        $client_key = trim(substr($temp_str,0,strpos($temp_str,"\r\n")));
+        $id = substr($buffer,$pos,strlen($client_key));
+        return $id;
     }
     function handshake($buffer,$client_socket){
         // Sec-WebSocket-Key
@@ -150,7 +140,7 @@
         socket_write($client_socket,$handshake_msg,strlen($handshake_msg));
         echo $handshake_msg;
         
-        
+        return $client_key;
     }
     function encode($buffer){
         $len = strlen($buffer);
