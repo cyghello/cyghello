@@ -118,6 +118,10 @@ class socketServer
             ));
             // 把服务端返回的数据写入套接字
             $this->broadcast($msg);
+            //$this->broadcast($buffer);////
+            // echo"$msg\n";
+            //echo"$buffer\n";
+            //echo"ok\n";
           }
         }
       } catch (Exception $e) {
@@ -155,6 +159,15 @@ class socketServer
     $msg_content = $recv_msg['msg'];
     $response = [];
     //echo "<pre>";
+    if ($msg_type == 'user_esp')
+    {
+      $userInfo = $this->_socketPool[(int)$socket]['userInfo'];
+      $response['type'] = 'user';
+      $response['from'] = $userInfo['username'];
+      $response['msg'] = $msg_content;
+      $response['headerimg'] = $userInfo['headerimg'];
+      return $this->$response;
+    }
     switch ($msg_type) {
       case 'login':
       // 登陆上线信息
@@ -184,8 +197,16 @@ class socketServer
         $response['headerimg'] = $userInfo['headerimg'];
         //print_r($response);
         break;
+      // case 'user_esp':
+      //     // 发送的消息
+      //       $userInfo = $this->_socketPool[(int)$socket]['userInfo'];
+      //       $response['type'] = 'user';
+      //       $response['from'] = $userInfo['username'];
+      //       $response['msg'] = $msg_content;
+      //       $response['headerimg'] = $userInfo['headerimg'];
+      //       //print_r($response);
+      //     break;
     }
-
     return $this->frame(json_encode($response));
   }
 
